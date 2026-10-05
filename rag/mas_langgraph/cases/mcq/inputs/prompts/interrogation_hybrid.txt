@@ -1,0 +1,40 @@
+Interrogation round {round}/{max_rounds} (attempt {attempt}/{max_attempts}).
+
+Question:
+{question}
+
+{factual_context}
+
+You may compose exactly one query:
+
+REMOVE(target, boundary)
+
+ADD(artifact, boundary)
+
+WHATIF(old_artifact, replacement_artifact, boundary)
+
+DONE
+
+Choose the intervention that would provide the most useful evidence for
+explaining why the output was produced.
+
+The HYBRID INTERVENTION VOCABULARY below is authoritative for this round.
+Use only the intervention opportunities explicitly available in that vocabulary.
+Do not invent artifacts.
+
+{hybrid_vocabulary}
+
+Previously tested queries:
+{tested_queries}
+
+{intervenable_handoff}
+
+{validation_feedback}
+
+You may compose one query using only the exact artifact refs, replacement refs, operation types, and boundaries shown above.
+
+Do not invent artifact IDs or checkpoint boundaries.
+
+Do not repeat a previously executed query.
+
+Reply with exactly one structured intervention query or DONE.

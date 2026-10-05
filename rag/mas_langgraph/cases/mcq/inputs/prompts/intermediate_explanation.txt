@@ -1,0 +1,21 @@
+Synthesize an intermediate explanation after the latest interrogation round.
+
+Question: {question}
+
+Factual decision: {factual_decision}
+
+Episodic history so far:
+{episodic_history}
+
+Latest query: {latest_query}
+Latest result: {latest_result}
+Latest replay comparison: {latest_comparison}
+
+Instructions:
+- Summarize what has been established so far.
+- Distinguish factual provenance from counterfactual evidence.
+- Mention no-op instability where relevant.
+- Do not make universal causal claims.
+- Do not propose a new query.
+- If an intervention showed no demonstrated effect, say so without claiming the artifact is irrelevant.
+- Resolve conflicts in favor of structured factual/replay records.

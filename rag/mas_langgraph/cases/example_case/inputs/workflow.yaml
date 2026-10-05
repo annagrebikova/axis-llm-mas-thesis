@@ -1,0 +1,20 @@
+# Descriptive only. Does not construct a LangGraph.
+nodes:
+  - id: source_node
+    label: Source
+    type: agent
+    purpose: Produce a source artifact
+    inputs: []
+    outputs: [ExampleSourceArtifact]
+    status: active
+  - id: decision_node
+    label: Decision
+    type: computational
+    purpose: Consume the source and emit a result
+    inputs: [ExampleSourceArtifact]
+    outputs: [ExampleResultArtifact]
+    status: active
+
+routing:
+  - from: source_node
+    description: Forward source artifacts to the decision node

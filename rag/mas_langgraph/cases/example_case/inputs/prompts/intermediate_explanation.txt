@@ -1,0 +1,1 @@
+Summarize established facts for {question}. Latest: {latest_query} {latest_result}

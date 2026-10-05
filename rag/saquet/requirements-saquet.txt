@@ -1,0 +1,18 @@
+# Isolated dependencies for the supplied SAQUET IWF implementation.
+# Install into a dedicated env when practical:
+#   pip install -r saquet/requirements-saquet.txt
+#   python -m spacy download en_core_web_lg
+
+Levenshtein>=0.25.0
+spacy>=3.7.0
+pandas>=2.0.0
+transformers>=4.40.0
+torch>=2.0.0
+sentence-transformers>=2.7.0
+lexicalrichness>=0.5.0
+numpy>=1.24.0
+nltk>=3.8.0
+openai>=1.30.0
+evaluate>=0.4.0
+language_tool_python>=2.8.0
+python-dotenv>=1.0.0

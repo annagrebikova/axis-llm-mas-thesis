@@ -1,0 +1,9 @@
+types:
+  - name: ExampleSourceArtifact
+    description: Illustrative source artifact
+    explanation_target: true
+    intervenable: true
+  - name: ExampleResultArtifact
+    description: Illustrative result artifact
+    explanation_target: true
+    intervenable: false

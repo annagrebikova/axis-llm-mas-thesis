@@ -1,0 +1,29 @@
+langgraph>=1.0.0,<2.0.0
+
+# Requirements for RAG Pipeline
+langchain>=0.1.0
+langchain-classic>=1.0.0  # AgentExecutor / create_react_agent on LangChain 1.x
+langchain-community>=0.0.20
+langchain-text-splitters>=0.0.1
+langchain-openai>=0.0.5  # For OpenAI agents
+chromadb>=0.4.0
+sentence-transformers>=2.2.0
+torch>=2.0.0
+tf-keras>=2.15.0  # Required for transformers compatibility with Keras 3
+
+# PDF processing (if not already installed)
+pdfplumber>=0.10.0
+
+# Optional: For agents example
+# openai>=1.0.0  # Install separately: pip install openai
+
+# Optional: For loading .env files (recommended for API keys)
+python-dotenv>=1.0.0
+
+# Optional: LangSmith tracing (set LANGSMITH_TRACING=true and LANGSMITH_API_KEY)
+langsmith>=0.1.0
+
+# Optional: for better performance
+# accelerate>=0.20.0  # For faster model loading
+# transformers>=4.30.0  # If using HuggingFace models directly
+

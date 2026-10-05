@@ -1,0 +1,168 @@
+# Descriptive workflow metadata. Does not define LangGraph execution.
+# Executable topology remains in core/graph_builder.py.
+
+nodes:
+  - id: build_outline
+    label: Structure Outline
+    type: agent
+    purpose: Build document outline from indexed PDF
+    inputs: []
+    outputs: [DocSection]
+    status: active
+  - id: generate_learning_objectives
+    label: Curriculum LO
+    type: agent
+    purpose: Create learning objectives per section
+    inputs: [DocSection]
+    outputs: [LearningObjective]
+    status: active
+  - id: initial_retrieve_evidence_for_all_sections
+    label: Retriever
+    type: agent
+    purpose: Retrieve evidence for every outline section
+    inputs: [DocSection]
+    outputs: [EvidenceChunk]
+    status: active
+  - id: retrieve_evidence
+    label: Retriever (compatibility)
+    type: agent
+    purpose: Legacy per-section retrieval node retained for compatibility
+    inputs: [DocSection]
+    outputs: [EvidenceChunk]
+    status: compatibility_unwired
+  - id: deduplicate_evidence
+    label: Duplicate Detector
+    type: agent
+    purpose: Flag duplicate evidence chunks
+    inputs: [EvidenceChunk]
+    outputs: [EvidenceChunk]
+    status: active
+  - id: curate_evidence
+    label: Evidence Curator
+    type: agent
+    purpose: Score and tag evidence chunks
+    inputs: [EvidenceChunk]
+    outputs: [EvidenceChunk]
+    status: active
+  - id: atomize_evidence
+    label: Atomizer
+    type: agent
+    purpose: Extract knowledge atoms from evidence
+    inputs: [EvidenceChunk]
+    outputs: [KnowledgeAtom]
+    status: active
+  - id: atomize_new_evidence
+    label: Incremental Atomizer
+    type: agent
+    purpose: Atomize newly retrieved evidence after repair
+    inputs: [EvidenceChunk]
+    outputs: [KnowledgeAtom]
+    status: active
+  - id: update_section_evidence_status
+    label: Section Evidence Status
+    type: computational
+    purpose: Update per-section evidence sufficiency
+    inputs: [DocSection, EvidenceChunk, KnowledgeAtom]
+    outputs: []
+    status: active
+  - id: repair_missing_evidence
+    label: Evidence Repair
+    type: agent
+    purpose: Retrieve additional evidence for unsupported sections
+    inputs: [DocSection]
+    outputs: [EvidenceChunk]
+    status: active
+  - id: plan_mcq_blueprints
+    label: Blueprint Planner
+    type: computational
+    purpose: Plan MCQBlueprints from coverage
+    inputs: [DocSection, LearningObjective, KnowledgeAtom, EvidenceChunk]
+    outputs: [MCQBlueprint]
+    status: active
+  - id: generate_candidate_mcqs_from_blueprints
+    label: Quiz Generator
+    type: agent
+    purpose: Generate CandidateMCQs from blueprints
+    inputs: [MCQBlueprint, KnowledgeAtom, EvidenceChunk]
+    outputs: [CandidateMCQ]
+    status: active
+  - id: verify_candidate_mcqs_against_evidence
+    label: Evidence Verifier
+    type: agent
+    purpose: Verify candidates against PDF evidence
+    inputs: [CandidateMCQ, EvidenceChunk]
+    outputs: [EvidenceCheckReport]
+    status: active
+  - id: cross_cove_verify_candidate_mcqs
+    label: Cross-CoVe Verifier
+    type: agent
+    purpose: Independent verifier majority vote
+    inputs: [CandidateMCQ]
+    outputs: [CrossCoVeReport]
+    status: active
+  - id: apply_acceptance_gate
+    label: Acceptance Gate
+    type: computational
+    purpose: Accept, revise, or reject candidates
+    inputs: [CandidateMCQ, EvidenceCheckReport, CrossCoVeReport]
+    outputs: [SupervisorDecision]
+    status: active
+  - id: revise_candidate_mcqs
+    label: MCQ Reviser
+    type: agent
+    purpose: Revise candidates needing fixes
+    inputs: [CandidateMCQ]
+    outputs: [CandidateMCQ]
+    status: active
+  - id: check_coverage
+    label: Coverage Controller
+    type: computational
+    purpose: Detect section/LO coverage gaps
+    inputs: [CandidateMCQ, SupervisorDecision]
+    outputs: []
+    status: active
+  - id: generate_repair_blueprints
+    label: Repair Blueprint Planner
+    type: computational
+    purpose: Plan additional blueprints for coverage gaps
+    inputs: [DocSection, LearningObjective]
+    outputs: [MCQBlueprint]
+    status: active
+  - id: package_final_quiz
+    label: Packager
+    type: agent
+    purpose: Export accepted MCQs as QuizPack
+    inputs: [CandidateMCQ, SupervisorDecision]
+    outputs: [QuizPack]
+    status: active
+  - id: verify_candidates
+    label: Verifier (compatibility)
+    type: agent
+    purpose: Legacy combined verification node retained for compatibility
+    inputs: [CandidateMCQ]
+    outputs: [EvidenceCheckReport]
+    status: compatibility_unwired
+  - id: package_or_end
+    label: Package or End (compatibility)
+    type: computational
+    purpose: Legacy packaging router retained for compatibility
+    inputs: [CandidateMCQ]
+    outputs: [QuizPack]
+    status: compatibility_unwired
+  - id: end_with_error
+    label: Error Terminal (compatibility)
+    type: computational
+    purpose: Legacy error sink; registered but not on the START path
+    inputs: []
+    outputs: []
+    status: compatibility_unwired
+
+routing:
+  - from: apply_acceptance_gate
+    description: Revision loop when candidates need revision
+  - from: check_coverage
+    description: Evidence repair, blueprint repair, or package
+  - from: curate_evidence
+    description: Atomize full set or newly retrieved evidence
+  - from: update_section_evidence_status
+    description: Plan blueprints or skip to coverage

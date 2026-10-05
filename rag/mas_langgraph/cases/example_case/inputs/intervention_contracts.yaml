@@ -1,0 +1,6 @@
+contracts:
+  - artifact_type: ExampleSourceArtifact
+    allowed_operations: [REMOVE]
+    allow_external_add: false
+    required_state_channels: [artifact_catalog, available_artifact_refs]
+    description: Example source artifacts may be removed in replay experiments

@@ -1,0 +1,20 @@
+contracts:
+  - artifact_type: EvidenceChunk
+    allowed_operations: [REMOVE, ADD, REPLACE]
+    replacement_compatible_types: [EvidenceChunk]
+    allow_external_add: true
+    required_state_channels: [artifact_catalog, available_artifact_refs]
+    description: Evidence may be removed, added from catalog/fixtures, or replaced globally from a checkpoint
+  - artifact_type: KnowledgeAtom
+    allowed_operations: [REMOVE, REPLACE]
+    replacement_compatible_types: [KnowledgeAtom]
+    allow_external_add: false
+    description: Atoms may be blocked or replaced with catalog atoms
+  - artifact_type: CandidateMCQ
+    allowed_operations: [REMOVE]
+    allow_external_add: false
+    description: Candidates may be blocked from downstream packaging
+  - artifact_type: MCQBlueprint
+    allowed_operations: [REMOVE]
+    allow_external_add: false
+    description: Blueprints may be blocked from generation

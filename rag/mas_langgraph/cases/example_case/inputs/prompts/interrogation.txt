@@ -1,0 +1,4 @@
+Round {round}/{max_rounds}
+Question: {question}
+History: {episodic_history}
+Return exactly one query: REMOVE / ADD / WHATIF / DONE.

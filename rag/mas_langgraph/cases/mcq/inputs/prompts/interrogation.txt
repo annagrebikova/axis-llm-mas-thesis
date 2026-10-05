@@ -1,0 +1,38 @@
+Interrogation round {round}/{max_rounds} (attempt {attempt}/{max_attempts}).
+
+Question: {question}
+
+{factual_context}
+
+Previously tested queries:
+{tested_queries}
+
+Valid intervention candidates:
+{intervention_candidates}
+
+Factual-only relevant artifacts (not intervenable under current contracts):
+{factual_only_artifacts}
+
+{executable_queries}
+
+{intervenable_handoff}
+
+{validation_feedback}
+
+Guidance:
+- Prefer a listed intervention candidate when no counterfactual has been executed yet.
+- Prefer higher-listed candidates when choosing among equally plausible interventions.
+- For questions about why this MCQ was generated / whether supporting information shaped it:
+  prefer EvidenceChunk (before atomize when available) and KnowledgeAtom (before planning/generation)
+  interventions over CandidateMCQ removal before verification.
+- If the candidate is already fully described and contract-valid, prefer executing a high-value
+  intervention.
+- Do not invent interventions outside the listed contracts and boundaries.
+- Do not recommend or attempt interventions on factual-only artifacts.
+- WHATIF/REPLACE only when an executable form with a controlled alternative is listed.
+- When a parser error occurs, copy an executable query form exactly.
+- Prefer spending remaining rounds on untested pre-generation information interventions when
+  they remain available.
+- DONE is valid when no further intervention would help.
+
+Return exactly one structured query and nothing else.

@@ -1,0 +1,298 @@
+relations:
+  # Outline / LO
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: generate_learning_objectives
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: initial_retrieve_evidence_for_all_sections
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: repair_missing_evidence
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: update_section_evidence_status
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: check_coverage
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: plan_mcq_blueprints
+  - producer: generate_learning_objectives
+    artifact_type: LearningObjective
+    relation: learning_objective
+    consumer: plan_mcq_blueprints
+  - producer: generate_learning_objectives
+    artifact_type: LearningObjective
+    relation: learning_objective
+    consumer: generate_candidate_mcqs_from_blueprints
+
+  # Evidence retrieval producers
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: planning_evidence
+    consumer: plan_mcq_blueprints
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: revise_candidate_mcqs
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_evidence
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_new_evidence
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: evidence_to_deduplicate
+    consumer: deduplicate_evidence
+  - producer: initial_retrieve_evidence_for_all_sections
+    artifact_type: EvidenceChunk
+    relation: evidence_to_curate
+    consumer: curate_evidence
+
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: planning_evidence
+    consumer: plan_mcq_blueprints
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: revise_candidate_mcqs
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_evidence
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_new_evidence
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_deduplicate
+    consumer: deduplicate_evidence
+  - producer: retrieve_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_curate
+    consumer: curate_evidence
+
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: planning_evidence
+    consumer: plan_mcq_blueprints
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: supporting_evidence
+    consumer: revise_candidate_mcqs
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_evidence
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_atomize
+    consumer: atomize_new_evidence
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_deduplicate
+    consumer: deduplicate_evidence
+  - producer: repair_missing_evidence
+    artifact_type: EvidenceChunk
+    relation: evidence_to_curate
+    consumer: curate_evidence
+
+  # Atoms
+  - producer: atomize_evidence
+    artifact_type: KnowledgeAtom
+    relation: planning_atom
+    consumer: plan_mcq_blueprints
+  - producer: atomize_evidence
+    artifact_type: KnowledgeAtom
+    relation: knowledge_atom
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: atomize_evidence
+    artifact_type: KnowledgeAtom
+    relation: grounding_atom
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: atomize_evidence
+    artifact_type: KnowledgeAtom
+    relation: knowledge_atom
+    consumer: revise_candidate_mcqs
+  - producer: atomize_new_evidence
+    artifact_type: KnowledgeAtom
+    relation: planning_atom
+    consumer: plan_mcq_blueprints
+  - producer: atomize_new_evidence
+    artifact_type: KnowledgeAtom
+    relation: knowledge_atom
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: atomize_new_evidence
+    artifact_type: KnowledgeAtom
+    relation: grounding_atom
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: atomize_new_evidence
+    artifact_type: KnowledgeAtom
+    relation: knowledge_atom
+    consumer: revise_candidate_mcqs
+
+  # Blueprints
+  - producer: plan_mcq_blueprints
+    artifact_type: MCQBlueprint
+    relation: generation_blueprint
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: plan_mcq_blueprints
+    artifact_type: MCQBlueprint
+    relation: verification_blueprint
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: plan_mcq_blueprints
+    artifact_type: MCQBlueprint
+    relation: blueprint_constraints
+    consumer: apply_acceptance_gate
+  - producer: plan_mcq_blueprints
+    artifact_type: MCQBlueprint
+    relation: revision_blueprint
+    consumer: revise_candidate_mcqs
+  - producer: plan_mcq_blueprints
+    artifact_type: MCQBlueprint
+    relation: packaging_blueprint
+    consumer: package_final_quiz
+  - producer: generate_repair_blueprints
+    artifact_type: MCQBlueprint
+    relation: generation_blueprint
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: generate_repair_blueprints
+    artifact_type: MCQBlueprint
+    relation: verification_blueprint
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: generate_repair_blueprints
+    artifact_type: MCQBlueprint
+    relation: blueprint_constraints
+    consumer: apply_acceptance_gate
+  - producer: generate_repair_blueprints
+    artifact_type: MCQBlueprint
+    relation: revision_blueprint
+    consumer: revise_candidate_mcqs
+  - producer: generate_repair_blueprints
+    artifact_type: MCQBlueprint
+    relation: packaging_blueprint
+    consumer: package_final_quiz
+
+  # Candidates from generation
+  - producer: generate_candidate_mcqs_from_blueprints
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: generate_candidate_mcqs_from_blueprints
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: cross_cove_verify_candidate_mcqs
+  - producer: generate_candidate_mcqs_from_blueprints
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: apply_acceptance_gate
+  - producer: generate_candidate_mcqs_from_blueprints
+    artifact_type: CandidateMCQ
+    relation: candidate_to_revise
+    consumer: revise_candidate_mcqs
+  - producer: generate_candidate_mcqs_from_blueprints
+    artifact_type: CandidateMCQ
+    relation: accepted_candidate
+    consumer: package_final_quiz
+
+  # Candidates from revision
+  - producer: revise_candidate_mcqs
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: verify_candidate_mcqs_against_evidence
+  - producer: revise_candidate_mcqs
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: cross_cove_verify_candidate_mcqs
+  - producer: revise_candidate_mcqs
+    artifact_type: CandidateMCQ
+    relation: candidate_question
+    consumer: apply_acceptance_gate
+  - producer: revise_candidate_mcqs
+    artifact_type: CandidateMCQ
+    relation: candidate_to_revise
+    consumer: revise_candidate_mcqs
+  - producer: revise_candidate_mcqs
+    artifact_type: CandidateMCQ
+    relation: accepted_candidate
+    consumer: package_final_quiz
+
+  # Evidence reports
+  - producer: verify_candidate_mcqs_against_evidence
+    artifact_type: EvidenceCheckReport
+    relation: evidence_verification_gate
+    consumer: cross_cove_verify_candidate_mcqs
+  - producer: verify_candidate_mcqs_against_evidence
+    artifact_type: EvidenceCheckReport
+    relation: evidence_report
+    consumer: apply_acceptance_gate
+  - producer: verify_candidate_mcqs_against_evidence
+    artifact_type: EvidenceCheckReport
+    relation: evidence_feedback
+    consumer: revise_candidate_mcqs
+
+  # Cross-CoVe
+  - producer: cross_cove_verify_candidate_mcqs
+    artifact_type: CrossCoVeReport
+    relation: cross_cove_report
+    consumer: apply_acceptance_gate
+  - producer: cross_cove_verify_candidate_mcqs
+    artifact_type: CrossCoVeReport
+    relation: cross_cove_feedback
+    consumer: revise_candidate_mcqs
+
+  # Decisions
+  - producer: apply_acceptance_gate
+    artifact_type: SupervisorDecision
+    relation: revision_decision
+    consumer: revise_candidate_mcqs
+  - producer: apply_acceptance_gate
+    artifact_type: SupervisorDecision
+    relation: acceptance_decision
+    consumer: package_final_quiz
+
+  # DocSection / LO also consumed by generation via blueprint context
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: generate_candidate_mcqs_from_blueprints
+  - producer: build_outline
+    artifact_type: DocSection
+    relation: document_section
+    consumer: revise_candidate_mcqs

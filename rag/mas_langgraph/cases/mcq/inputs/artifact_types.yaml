@@ -1,0 +1,56 @@
+types:
+  - name: DocSection
+    description: Structured document section
+    explanation_target: false
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_doc_section
+  - name: LearningObjective
+    description: Learning objective associated with a document section
+    explanation_target: false
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_learning_objective
+  - name: EvidenceChunk
+    description: Retrieved PDF evidence chunk
+    explanation_target: true
+    intervenable: true
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_evidence_chunk
+  - name: KnowledgeAtom
+    description: Atomized knowledge unit
+    explanation_target: false
+    intervenable: true
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_knowledge_atom
+  - name: MCQBlueprint
+    description: Plan for one MCQ
+    explanation_target: false
+    intervenable: true
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_blueprint
+  - name: CandidateMCQ
+    description: Draft multiple-choice question
+    explanation_target: true
+    intervenable: true
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_candidate_mcq
+  - name: EvidenceCheckReport
+    description: PDF grounding verification report
+    explanation_target: false
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_evidence_report
+  - name: CrossCoVeReport
+    description: Cross-CoVe majority-vote report
+    explanation_target: false
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_cross_cove_report
+  - name: SupervisorDecision
+    description: Acceptance gate decision
+    explanation_target: true
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_supervisor_decision
+  - name: OutcomeAssessment
+    description: Per-candidate outcome criterion vector used by the acceptance policy
+    explanation_target: true
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_outcome_assessment
+  - name: QuizPack
+    description: Final exported quiz package
+    explanation_target: true
+    intervenable: false
+    serialization_adapter: mas_langgraph.cases.mcq.artifacts.wrap_quiz_pack

@@ -1,0 +1,117 @@
+criteria:
+  - name: revision_count
+    label: Revision count
+    value_type: int
+    decision_relevant: true
+    explanation: Number of times this candidate has been revised
+  - name: max_revisions
+    label: Max revisions
+    value_type: int
+    decision_relevant: true
+    explanation: Configured revision budget for the acceptance gate
+  - name: candidate_status
+    label: Candidate status
+    value_type: str
+    decision_relevant: true
+    explanation: Operational status at assessment time (used by max-revision branch)
+  - name: max_revisions_reached_flag
+    label: Max revisions reached flag
+    value_type: bool
+    decision_relevant: true
+    explanation: Whether the candidate already carries max_revisions_reached
+  - name: evidence_report_available
+    label: Evidence report available
+    value_type: bool
+    decision_relevant: true
+    explanation: Version-matched EvidenceCheckReport exists for this candidate
+  - name: cross_cove_required
+    label: Cross-CoVe required
+    value_type: bool
+    decision_relevant: true
+    explanation: Effective cross_cove_enabled configuration for this run
+  - name: cross_cove_report_available
+    label: Cross-CoVe report available
+    value_type: bool
+    decision_relevant: true
+    explanation: Version-matched CrossCoVeReport exists when Cross-CoVe is required
+  - name: hard_blocking_flags
+    label: Hard blocking flags
+    value_type: tuple[str, ...]
+    decision_relevant: true
+    explanation: Candidate flags that participate in hard-rejection handling
+  - name: structural_reject_flags
+    label: Structural reject flags
+    value_type: tuple[str, ...]
+    decision_relevant: true
+    explanation: Subset of hard flags that force immediate reject
+  - name: pdf_supported
+    label: Factual support
+    value_type: bool
+    decision_relevant: true
+    explanation: Evidence report supported_by_pdf for this candidate version
+  - name: cross_cove_passed
+    label: Cross-CoVe passed
+    value_type: bool
+    decision_relevant: true
+    explanation: Majority verifier answer matches the generator answer
+  - name: cross_cove_majority_present
+    label: Cross-CoVe majority present
+    value_type: bool
+    decision_relevant: true
+    explanation: Cross-CoVe produced a non-empty majority answer
+  - name: source_refs_present
+    label: Source references present
+    value_type: bool
+    decision_relevant: true
+    explanation: Candidate carries at least one source reference
+  - name: correct_option_count
+    label: Number of correct options
+    value_type: int
+    decision_relevant: true
+    explanation: Count of options marked is_correct; gate requires exactly one
+  - name: blueprint_available
+    label: Blueprint available
+    value_type: bool
+    decision_relevant: true
+    explanation: Matching MCQBlueprint exists for the candidate blueprint_id
+  - name: target_atom_count
+    label: Blueprint target atom count
+    value_type: int
+    decision_relevant: true
+    explanation: Number of target_atom_ids on the blueprint
+  - name: blueprint_evidence_count
+    label: Blueprint evidence chunk count
+    value_type: int
+    decision_relevant: true
+    explanation: Number of evidence_chunk_ids on the blueprint
+  - name: answer_supported
+    label: Answer supported
+    value_type: bool
+    decision_relevant: false
+    explanation: Diagnostic evidence-report field; influences PDF-fail reasons only
+  - name: stem_supported
+    label: Stem supported
+    value_type: bool
+    decision_relevant: false
+    explanation: Diagnostic evidence-report field not used as a direct gate predicate
+  - name: distractors_valid
+    label: Distractors valid
+    value_type: bool
+    decision_relevant: false
+    explanation: Diagnostic evidence-report field not used as a direct gate predicate
+  - name: explanation_supported
+    label: Explanation supported
+    value_type: bool
+    decision_relevant: false
+    explanation: Diagnostic evidence-report field not used as a direct gate predicate
+  - name: evidence_confidence
+    label: Evidence confidence
+    value_type: float
+    decision_relevant: false
+    explanation: Diagnostic confidence score from the evidence report
+  - name: required_tool_success
+    label: Required tool success
+    value_type: bool
+    decision_relevant: false
+    implemented: false
+    explanation: Reserved; no explicit tool-success signal exists in the factual workflow yet

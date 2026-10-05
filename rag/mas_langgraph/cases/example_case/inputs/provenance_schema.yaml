@@ -1,0 +1,5 @@
+relations:
+  - producer: source_node
+    artifact_type: ExampleSourceArtifact
+    relation: source_input
+    consumer: decision_node

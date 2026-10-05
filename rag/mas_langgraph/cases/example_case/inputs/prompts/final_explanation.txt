@@ -1,0 +1,3 @@
+Final explanation for {question}.
+{factual_context}
+{evidence_ledger}

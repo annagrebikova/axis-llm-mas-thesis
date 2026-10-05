@@ -1,0 +1,4 @@
+case_id: example_case
+case_version: 1
+python_adapter: mas_langgraph.cases.example_case.ExampleCaseDefinition
+description: Illustrative case template with no executable workflow

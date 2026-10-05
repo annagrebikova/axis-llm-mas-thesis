@@ -1,0 +1,23 @@
+Factual context for the explained case:
+
+{explained_case}
+
+{criteria}
+
+{decision_details}
+
+{factual_artifacts}
+
+{occurrences}
+
+{provenance_relations}
+
+{revision_lineage}
+
+{source_boundaries}
+
+{intervention_space}
+
+{controlled_alternatives}
+
+{valid_boundaries}

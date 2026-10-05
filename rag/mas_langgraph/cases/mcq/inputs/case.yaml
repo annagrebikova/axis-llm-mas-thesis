@@ -1,0 +1,4 @@
+case_id: mcq_generation
+case_version: 1
+python_adapter: mas_langgraph.cases.mcq.case_definition.MCQCaseDefinition
+description: PDF-grounded MCQ generation workflow with verification and packaging

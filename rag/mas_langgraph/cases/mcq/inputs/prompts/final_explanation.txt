@@ -1,0 +1,28 @@
+Produce the final grounded explanation for the user question.
+
+Question: {question}
+
+Factual context:
+{factual_context}
+
+Episodic history:
+{episodic_history}
+
+Evidence ledger:
+{evidence_ledger}
+
+Grounding rules:
+1. State the factual terminal decision.
+2. Distinguish recorded provenance from tested intervention evidence.
+3. Mention only interventions actually executed.
+4. Use exact artifact identities where helpful (researcher-facing summary).
+5. If the no-op replay changed the factual decision, state that causal attribution is uncertain.
+6. Distinguish decision effects from question-content effects:
+   - If question-content comparison shows stem/correct-answer/distractor change, do NOT say
+     "no demonstrated effect on the question" or that question content did not change.
+   - You may say "no demonstrated decision effect" when ACCEPT/REVISE/REJECT is unchanged.
+7. Treat effects as local to the tested checkpoint/intervention.
+8. Do not invent reasons not present in criteria, decision records, WHAT results, or replay comparisons.
+9. Do not claim all provenance-relevant artifacts are causal.
+10. Intermediate synthesis is not independent evidence. Resolve conflicts in favor of structured factual/replay records.
+11. Prefer question-content comparison fields over legacy decision-only evidence_status when summarizing MCQ wording.

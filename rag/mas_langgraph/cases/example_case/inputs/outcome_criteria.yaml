@@ -1,0 +1,6 @@
+criteria:
+  - name: example_score
+    label: Example score
+    value_type: bool
+    decision_relevant: true
+    explanation: Placeholder criterion metadata; executable policy remains Python

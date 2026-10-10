@@ -19,11 +19,6 @@ The thesis addresses:
 
 The prototype provides evidence about the tested interventions and recorded executions. It does not establish exhaustive causal explanations, universal reproducibility, or classroom readiness of every accepted question.
 
-## Version and verification note
-
-These instructions were checked against the source archive `rag_27_09_11_44(1).zip`. They are based on source inspection, not a fresh end-to-end installation test. Later local changes must be checked before publishing this README as documentation of a newer release. In particular, do not assume that the inspected version contains later SAQUET fixes or durable reference-sweep recovery.
-
-The dependency files use version ranges rather than a complete environment lock. For an archival thesis release, also publish a dependency snapshot from the environment actually used for the reported experiments, after checking it for private paths or package credentials.
 
 ## 1. What belongs in this repository?
 
